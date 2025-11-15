@@ -30,6 +30,7 @@
 		{
 			labelMousePositionX = new Label();
 			labelMousePositionY = new Label();
+			labelStatus = new Label();
 			SuspendLayout();
 			// 
 			// labelMousePositionX
@@ -50,11 +51,21 @@
 			labelMousePositionY.TabIndex = 1;
 			labelMousePositionY.Text = "Mouse Y:";
 			// 
+			// labelStatus
+			// 
+			labelStatus.AutoSize = true;
+			labelStatus.Location = new Point(12, 39);
+			labelStatus.Name = "labelStatus";
+			labelStatus.Size = new Size(38, 15);
+			labelStatus.TabIndex = 2;
+			labelStatus.Text = "label1";
+			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(264, 56);
+			ClientSize = new Size(264, 67);
+			Controls.Add(labelStatus);
 			Controls.Add(labelMousePositionY);
 			Controls.Add(labelMousePositionX);
 			FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -72,5 +83,6 @@
 
 		private Label labelMousePositionX;
 		private Label labelMousePositionY;
+		private Label labelStatus;
 	}
 }

@@ -28,10 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			components = new System.ComponentModel.Container();
 			labelMousePositionX = new Label();
 			labelMousePositionY = new Label();
-			timer = new System.Windows.Forms.Timer(components);
 			SuspendLayout();
 			// 
 			// labelMousePositionX
@@ -52,12 +50,6 @@
 			labelMousePositionY.TabIndex = 1;
 			labelMousePositionY.Text = "Mouse Y:";
 			// 
-			// timer
-			// 
-			timer.Enabled = true;
-			timer.Interval = 1;
-			timer.Tick += Timer_Tick;
-			// 
 			// MainForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
@@ -70,8 +62,8 @@
 			Name = "MainForm";
 			StartPosition = FormStartPosition.CenterScreen;
 			Text = "MouseInspector";
+			FormClosing += MainForm_FormClosing;
 			Load += MainForm_Load;
-			MouseMove += MainForm_MouseMove;
 			ResumeLayout(false);
 			PerformLayout();
 		}
@@ -80,6 +72,5 @@
 
 		private Label labelMousePositionX;
 		private Label labelMousePositionY;
-		private System.Windows.Forms.Timer timer;
 	}
 }

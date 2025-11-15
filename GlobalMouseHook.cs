@@ -22,7 +22,7 @@ public class GlobalMouseHook : IDisposable
 	private const int WM_XBUTTONDOWN = 0x020B;
 	private const int WM_XBUTTONUP = 0x020C;
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout(layoutKind: LayoutKind.Sequential)]
 	private struct MSLLHOOKSTRUCT
 	{
 		public POINT pt;
@@ -32,7 +32,7 @@ public class GlobalMouseHook : IDisposable
 		public IntPtr dwExtraInfo;
 	}
 
-	[StructLayout(LayoutKind.Sequential)]
+	[StructLayout(layoutKind: LayoutKind.Sequential)]
 	private struct POINT
 	{
 		public int x;
@@ -83,42 +83,37 @@ public class GlobalMouseHook : IDisposable
 		if (nCode >= 0)
 		{
 			int wm = wParam.ToInt32();
-			var data = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(ptr: lParam);
+			MSLLHOOKSTRUCT data = Marshal.PtrToStructure<MSLLHOOKSTRUCT>(ptr: lParam);
 			int x = data.pt.x;
 			int y = data.pt.y;
 
 			switch (wm)
 			{
 				case WM_MOUSEMOVE:
-					MouseMoved?.Invoke(x, y);
+					MouseMoved?.Invoke(arg1: x, arg2: y);
 					break;
-
 				case WM_LBUTTONDOWN:
 					MouseDown?.Invoke(arg1: MouseButtons.Left, arg2: x, arg3: y);
 					break;
 				case WM_LBUTTONUP:
 					MouseUp?.Invoke(arg1: MouseButtons.Left, arg2: x, arg3: y);
 					break;
-
 				case WM_RBUTTONDOWN:
 					MouseDown?.Invoke(arg1: MouseButtons.Right, arg2: x, arg3: y);
 					break;
 				case WM_RBUTTONUP:
 					MouseUp?.Invoke(arg1: MouseButtons.Right, arg2: x, arg3: y);
 					break;
-
 				case WM_MBUTTONDOWN:
 					MouseDown?.Invoke(arg1: MouseButtons.Middle, arg2: x, arg3: y);
 					break;
 				case WM_MBUTTONUP:
 					MouseUp?.Invoke(arg1: MouseButtons.Middle, arg2: x, arg3: y);
 					break;
-
 				case WM_MOUSEWHEEL:
 					int delta = (short)((data.mouseData >> 16) & 0xffff);
 					MouseWheel?.Invoke(arg1: delta, arg2: x, arg3: y);
 					break;
-
 				case WM_XBUTTONDOWN:
 				case WM_XBUTTONUP:
 					int xButton = (data.mouseData >> 16) & 0xffff;
@@ -131,7 +126,8 @@ public class GlobalMouseHook : IDisposable
 					{
 						MouseUp?.Invoke(arg1: btn, arg2: x, arg3: y);
 					}
-
+					break;
+				default:
 					break;
 			}
 		}

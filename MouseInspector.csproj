@@ -13,6 +13,7 @@
     <AssemblyVersion>0.0.1.1</AssemblyVersion>
     <FileVersion>0.0.1.1</FileVersion>
     <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

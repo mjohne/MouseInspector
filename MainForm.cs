@@ -52,8 +52,17 @@ namespace MouseInspector
 			}
 		}
 
-		private void Hook_MouseDown(MouseButtons btn, int x, int y) { /* ... */ }
-		private void Hook_MouseUp(MouseButtons btn, int x, int y) { /* ... */ }
-		private void Hook_MouseWheel(int delta, int x, int y) { /* ... */ }
+		private void Hook_MouseDown(MouseButtons btn, int x, int y)
+		{
+			labelStatus.Text = btn.ToString();
+		}
+		private void Hook_MouseUp(MouseButtons btn, int x, int y)
+		{
+			labelStatus.Text = btn.ToString();
+		}
+		private void Hook_MouseWheel(int delta, int x, int y)
+		{
+			labelStatus.Text = delta.ToString();
+		}
 	}
 }
